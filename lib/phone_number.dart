@@ -19,26 +19,26 @@ class PhoneNumber {
   void _containsOnlyDigits(String number) {
     RegExp letterChars = RegExp('[a-zA-Z]');
     if (number.contains(letterChars))
-      throw (exception.of(ErrorType.ContainsLetters));
+      throw exception.of(ErrorType.ContainsLetters);
 
     RegExp punctuationChars = RegExp('[@:!]');
     if (number.contains(punctuationChars))
-      throw (exception.of(ErrorType.ContainsPunctuation));
+      throw exception.of(ErrorType.ContainsPunctuation);
 
     RegExp nonDigitChars = RegExp('\D');
     if (number.contains(nonDigitChars))
-      throw (exception.of(ErrorType.NonOnlyDigits));
+      throw exception.of(ErrorType.NonOnlyDigits);
   }
 
   void _hasCorrectSize(String number) {
-    if (number.length > 11) throw (exception.of(ErrorType.TooManyDigits));
-    if (number.length < 10) throw (exception.of(ErrorType.NotEnoughDigits));
+    if (number.length > 11) throw exception.of(ErrorType.TooManyDigits);
+    if (number.length < 10) throw exception.of(ErrorType.NotEnoughDigits);
   }
 
   String _removeCountryCode(String number) {
     if (number.length == 11) {
       if (!number.startsWith('1'))
-        throw (exception.of(ErrorType.IntCountryCodeIsNotOne));
+        throw exception.of(ErrorType.IntCountryCodeIsNotOne);
       number = number.substring(1);
     }
     return number;
@@ -47,15 +47,15 @@ class PhoneNumber {
   void _hasCorrectAreaCode(String number) {
     if (number.length == 11) number = number.substring(1);
 
-    if (number.startsWith('0')) throw (exception.of(ErrorType.AreaCodeIsZero));
-    if (number.startsWith('1')) throw (exception.of(ErrorType.AreaCodeIsOne));
+    if (number.startsWith('0')) throw exception.of(ErrorType.AreaCodeIsZero);
+    if (number.startsWith('1')) throw exception.of(ErrorType.AreaCodeIsOne);
   }
 
   void _hasCorrectExchangeCode(String number) {
     if (number.length == 11) number = number.substring(1);
 
-    if (number[3] == '0') throw (exception.of(ErrorType.ExchangeCodeIsZero));
-    if (number[3] == '1') throw (exception.of(ErrorType.ExchangeCodeIsOne));
+    if (number[3] == '0') throw exception.of(ErrorType.ExchangeCodeIsZero);
+    if (number[3] == '1') throw exception.of(ErrorType.ExchangeCodeIsOne);
   }
 }
 
